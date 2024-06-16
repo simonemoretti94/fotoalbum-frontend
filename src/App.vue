@@ -35,7 +35,7 @@ export default {
     aria-labelledby="staticBackdropLabel">
     <div class="offcanvas-header">
       <h5 class="offcanvas-title" id="staticBackdropLabel">
-        Get in touch
+        Contact us
       </h5>
       <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
@@ -81,7 +81,7 @@ export default {
             <label for="" class="form-label">Message</label>
             <textarea class="form-control" name="message" id="message" rows="6" v-model="state.message"></textarea>
           </div>
-          <button type="submit" class="btn btn-primary" :class="{ 'disabled': state.loading }">
+          <button type="submit" class="btn btn-primary" :class="{ 'disabled btn-secondary': state.loading }">
             {{ state.loading ? 'Sending...📧' : 'Submit' }}
           </button>
 
