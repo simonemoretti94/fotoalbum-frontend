@@ -1,8 +1,12 @@
 <script>
 import axios from 'axios';
+import AppPhotos from './components/AppPhotos.vue';
 
 export default {
   name: 'App',
+  components: {
+    AppPhotos,
+  },
   data() {
     return {
       base_api_url: 'http://127.0.0.1:8000',
@@ -184,6 +188,7 @@ export default {
 
 
   <section v-if="photos">
+    <!-- <AppPhotos :passedPhotos="photos"></AppPhotos> --> <!--functions and data need to be shared into state.js-->
     <div class="container">
       <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-5">
         <div class="col" v-for="photo in photos.data">
