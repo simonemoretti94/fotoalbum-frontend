@@ -1,10 +1,12 @@
 <script>
+import { state } from '../../state.js';
+
 export default {
     name: 'AppPhotos',
     props: ['passedPhotos'],
     data() {
         return {
-
+            state,
         }
     },
 }

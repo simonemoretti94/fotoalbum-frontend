@@ -1,6 +1,7 @@
 <script>
 import axios from 'axios';
 import AppPhotos from './components/AppPhotos.vue';
+import { state } from '../state.js';
 
 export default {
   name: 'App',
@@ -9,49 +10,40 @@ export default {
   },
   data() {
     return {
-      base_api_url: 'http://127.0.0.1:8000',
-      photos_endpoint: '/api/photos',
-      photos: '',
-      search_text: '',
-      email: '',
-      name: '',
-      message: '',
-      success: false,
-      errors: false,
-      loading: false,
+      state,
     }
   },
   methods: {
-    callApi(url) {
-      axios
-        .get(url)
-        .then(response => {
-          console.log(response);
-          this.photos = response.data.results;
-        })
-        .catch(error => {
-          console.error(error);
-        });
-    },
+    // callApi(url) {
+    //   axios
+    //     .get(url)
+    //     .then(response => {
+    //       console.log(response);
+    //       state.photos = response.data.results;
+    //     })
+    //     .catch(error => {
+    //       console.error(error);
+    //     });
+    // },
     search() {
-      const url = this.base_api_url + this.photos_endpoint + `/filtered?search=${this.search_text}`;
+      const url = state.base_api_url + state.photos_endpoint + `/filtered?search=${state.search_text}`;
       console.log('search URL: ', url);
-      this.callApi(url);
+      state.callApi(url);
     },
     goTo(url) {
       console.log('goTo URL: ', url);
-      this.callApi(url);
+      state.callApi(url);
     },
 
     // contact form
     submitMessage() {
-      this.loading = true;
+      state.loading = true;
 
       // creating the payload
       const payload = {
-        email: this.email,
-        name: this.name,
-        message: this.message,
+        email: state.email,
+        name: state.name,
+        message: state.message,
       }
 
       console.log(payload);
@@ -60,19 +52,19 @@ export default {
       axios.post('http://127.0.0.1:8000/api/contacts', payload)
         .then(response => {
           console.log(response);
-          this.loading = false;
+          state.loading = false;
 
           if (response.data.success) {
-            this.success = 'Thanks for your message';
-            this.error = false;
-            this.email = '';
-            this.name = '';
-            this.message = '';
+            state.success = 'Thanks for your message';
+            state.error = false;
+            state.email = '';
+            state.name = '';
+            state.message = '';
           }
           else {
             console.log(response);
-            this.errors = response.data.errors;
-            this.success = false;
+            state.errors = response.data.errors;
+            state.success = false;
           }
 
         })
@@ -85,9 +77,9 @@ export default {
     },
   },
   mounted() {
-    const url = this.base_api_url + this.photos_endpoint;
+    const url = state.base_api_url + state.photos_endpoint;
     console.log(url);
-    this.callApi(url);
+    state.callApi(url);
 
   }
 }
@@ -110,14 +102,14 @@ export default {
     </div>
     <div class="offcanvas-body">
       <div>
-        <div class="alert alert-success" role="alert" v-if="success">
-          <strong>Success</strong> {{ success }}
+        <div class="alert alert-success" role="alert" v-if="state.success">
+          <strong>Success</strong> {{ state.success }}
         </div>
 
-        <div class="alert alert-danger" role="alert" v-if="errors">
+        <div class="alert alert-danger" role="alert" v-if="state.errors">
           <strong>There are some errors:</strong>
           <ul>
-            <li v-for="error in errors">{{ error[0] }}</li>
+            <li v-for="error in state.errors">{{ error[0] }}</li>
           </ul>
         </div>
 
@@ -130,7 +122,7 @@ export default {
             <label for="email" class="form-label">E-mail</label>
             <div class="mb-3">
               <input type="text" class="form-control" name="email" id="email" aria-describedby="emailHelper"
-                placeholder="abc@mail.com" v-model="email" />
+                placeholder="abc@mail.com" v-model="state.email" />
               <small id="helpId" class="form-text text-muted">Type a valid e-mail</small>
             </div>
 
@@ -140,7 +132,7 @@ export default {
             <label for="name" class="form-label">Name</label>
             <div class="mb-3">
               <input type="text" class="form-control" name="name" id="name" aria-describedby="nameHelper"
-                placeholder="John Doe" v-model="name" />
+                placeholder="John Doe" v-model="state.name" />
               <small id="helpId" class="form-text text-muted">Type your name and surname</small>
             </div>
 
@@ -148,10 +140,10 @@ export default {
 
           <div class="mb-3">
             <label for="" class="form-label">Message</label>
-            <textarea class="form-control" name="message" id="message" rows="6" v-model="message"></textarea>
+            <textarea class="form-control" name="message" id="message" rows="6" v-model="state.message"></textarea>
           </div>
-          <button type="submit" class="btn btn-primary" :class="{ 'disabled': this.loading }">
-            {{ loading ? 'Sending...📧' : 'Submit' }}
+          <button type="submit" class="btn btn-primary" :class="{ 'disabled': state.loading }">
+            {{ state.loading ? 'Sending...📧' : 'Submit' }}
           </button>
 
         </form>
@@ -174,7 +166,7 @@ export default {
 
         <form @submit.prevent="search()" action="">
           <div class="input-group mb-3">
-            <input type="search" class="form-control" placeholder="search..." v-model="search_text">
+            <input type="search" class="form-control" placeholder="search..." v-model="state.search_text">
             <button class="btn btn-outline-secondary" type="submit">
               <i class="fas fa-search fa-lg fa-fw"></i>
             </button>
@@ -187,15 +179,15 @@ export default {
   </section>
 
 
-  <section v-if="photos">
+  <section v-if="state.photos">
     <!-- <AppPhotos :passedPhotos="photos"></AppPhotos> --> <!--functions and data need to be shared into state.js-->
     <div class="container">
       <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-5">
-        <div class="col" v-for="photo in photos.data">
+        <div class="col" v-for="photo in state.photos.data">
           <div class="card" style="height: 450px;">
 
             <template v-if="!photo.cover_image.startsWith('https://')">
-              <img :src="base_api_url + '/storage/' + photo.cover_image" :alt="photo.title" style="height: 80%;">
+              <img :src="state.base_api_url + '/storage/' + photo.cover_image" :alt="photo.title" style="height: 80%;">
             </template>
             <template v-else>
               <img :src="photo.cover_image" :alt="photo.title" style="height: 65%;">
@@ -228,7 +220,8 @@ export default {
                     <div class="modal-body" style="overflow-y: scroll;">
 
                       <img v-if="!photo.cover_image.startsWith('https://')" class="img-fluid"
-                        :src="base_api_url + '/storage/' + photo.cover_image" :alt="photo.title" style="height: 80%;">
+                        :src="state.base_api_url + '/storage/' + photo.cover_image" :alt="photo.title"
+                        style="height: 80%;">
                       <img v-else :src="photo.cover_image" class="img-fluid" :alt="photo.title" style="height: 80%;">
                       <p>
                         {{ photo.description }}
@@ -249,7 +242,8 @@ export default {
       </div>
       <nav class="my-3" aria-label="Page navigation">
         <ul class="pagination    ">
-          <li class="page-item" :class="{ 'd-none': !link.url, 'active': link.active }" v-for="link in photos.links">
+          <li class="page-item" :class="{ 'd-none': !link.url, 'active': link.active }"
+            v-for="link in state.photos.links">
             <button class="page-link" :href="link.url" type="button" @click="goTo(link.url)"><span
                 v-html="link.label"></span></button>
           </li>
