@@ -28,4 +28,53 @@ export const state = reactive({
                 console.error(error);
             });
     },
+
+    search() {
+        const url = this.base_api_url + this.photos_endpoint + `/filtered?search=${this.search_text}`;
+        console.log('search URL: ', url);
+        this.callApi(url);
+    },
+
+    goTo(url) {
+        console.log('goTo URL: ', url);
+        this.callApi(url);
+    },
+
+    submitMessage() {
+        state.loading = true;
+
+        // creating the payload
+        const payload = {
+            email: state.email,
+            name: state.name,
+            message: state.message,
+        }
+
+        console.log(payload);
+
+        // send a post request
+        axios.post('http://127.0.0.1:8000/api/contacts', payload)
+            .then(response => {
+                console.log(response);
+                state.loading = false;
+
+                if (response.data.success) {
+                    state.success = 'Thanks for your message';
+                    state.error = false;
+                    state.email = '';
+                    state.name = '';
+                    state.message = '';
+                }
+                else {
+                    console.log(response);
+                    state.errors = response.data.errors;
+                    state.success = false;
+                }
+
+            })
+            .catch(error => {
+
+            });
+
+    },
 });

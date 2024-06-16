@@ -14,67 +14,6 @@ export default {
     }
   },
   methods: {
-    // callApi(url) {
-    //   axios
-    //     .get(url)
-    //     .then(response => {
-    //       console.log(response);
-    //       state.photos = response.data.results;
-    //     })
-    //     .catch(error => {
-    //       console.error(error);
-    //     });
-    // },
-    search() {
-      const url = state.base_api_url + state.photos_endpoint + `/filtered?search=${state.search_text}`;
-      console.log('search URL: ', url);
-      state.callApi(url);
-    },
-    goTo(url) {
-      console.log('goTo URL: ', url);
-      state.callApi(url);
-    },
-
-    // contact form
-    submitMessage() {
-      state.loading = true;
-
-      // creating the payload
-      const payload = {
-        email: state.email,
-        name: state.name,
-        message: state.message,
-      }
-
-      console.log(payload);
-
-      // send a post request
-      axios.post('http://127.0.0.1:8000/api/contacts', payload)
-        .then(response => {
-          console.log(response);
-          state.loading = false;
-
-          if (response.data.success) {
-            state.success = 'Thanks for your message';
-            state.error = false;
-            state.email = '';
-            state.name = '';
-            state.message = '';
-          }
-          else {
-            console.log(response);
-            state.errors = response.data.errors;
-            state.success = false;
-          }
-
-        })
-        .catch(error => {
-
-        });
-
-      //handle the response
-
-    },
   },
   mounted() {
     const url = state.base_api_url + state.photos_endpoint;
@@ -116,7 +55,7 @@ export default {
 
         <p>Contact me, I'll get back as soon as possible</p>
 
-        <form @submit.prevent="submitMessage()">
+        <form @submit.prevent="state.submitMessage()">
 
           <div class="mb-3">
             <label for="email" class="form-label">E-mail</label>
@@ -164,7 +103,7 @@ export default {
           Read our amazing blog
         </p>
 
-        <form @submit.prevent="search()" action="">
+        <form @submit.prevent="state.search()" action="">
           <div class="input-group mb-3">
             <input type="search" class="form-control" placeholder="search..." v-model="state.search_text">
             <button class="btn btn-outline-secondary" type="submit">
@@ -244,7 +183,7 @@ export default {
         <ul class="pagination    ">
           <li class="page-item" :class="{ 'd-none': !link.url, 'active': link.active }"
             v-for="link in state.photos.links">
-            <button class="page-link" :href="link.url" type="button" @click="goTo(link.url)"><span
+            <button class="page-link" :href="link.url" type="button" @click="state.goTo(link.url)"><span
                 v-html="link.label"></span></button>
           </li>
         </ul>
