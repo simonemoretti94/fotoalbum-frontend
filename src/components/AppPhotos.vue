@@ -15,7 +15,7 @@ export default {
 <template>
 <section v-if="state.photos">
     <div class="container-fluid">
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-5">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-5">
             <div class="col" v-for="photo in state.photos.data">
                 <div class="card" style="height: 450px;">
 
@@ -146,6 +146,27 @@ export default {
 
 .back-card-f {
     background: linear-gradient( #444444 , #444444f3);
+}
+
+::-webkit-scrollbar {
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #2c2c2ca4;
+    border-bottom: .1px solid rgba(255, 255, 255, 0.575);
+}
+
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #52057b, #651a8e, #651a8e, #52057b);
+    border: solid .1px black;
+    border-radius: 2.5px;
+    cursor: grabbing;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #a421ebc5;
 }
 
 </style>
