@@ -15,7 +15,7 @@ export default {
 <template>
 <section v-if="state.photos">
     <div class="container-fluid">
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-5" :class="{'justify-content-center': state.photos.length % 2 != 0}">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-5" :class="{'justify-content-center': state.photos.length % 2 != 0}">
             <div class="col" v-for="photo in state.photos.data">
                 <div class="card" style="height: 450px;">
 
@@ -38,10 +38,13 @@ export default {
                     <div class="card-footer  back-card-f" style="height: 10%;">
 
                         <!-- Modal trigger button -->
-                        <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                            :data-bs-target="`#photo-${photo.id}`">
-                            View
-                        </button>
+                        <div class="d-flex justify-content-end">
+
+                            <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                                :data-bs-target="`#photo-${photo.id}`">
+                                View
+                            </button>
+                        </div>
 
                         <div class="modal fade" :id="`photo-${photo.id}`" tabindex="-1" data-bs-backdrop="static"
                             data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
