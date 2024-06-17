@@ -22,3 +22,16 @@ body {
     border: solid 0.1px rgba(169, 36, 187, 0.534);
     background: linear-gradient(var(--back-jumbo), var(--back-body));
 }
+
+.text-fancy {
+    font-family: Arial, Helvetica, sans-serif;
+    font-style: italic;
+    color: white;
+}
+
+.modal-description {
+    margin-top: 1rem;
+    padding: .5rem .5rem;
+    color: white;
+    font-size: small;
+}

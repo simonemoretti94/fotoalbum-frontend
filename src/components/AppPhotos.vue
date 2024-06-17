@@ -54,11 +54,11 @@ export default {
                             <div class="modal fade" :id="`photo-${photo.id}`" tabindex="-1" data-bs-backdrop="static"
                                 data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId"
                                 aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-md"
+                                <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm"
                                     role="document">
-                                    <div class="modal-content">
+                                    <div class="modal-content back-jumbo-reversed">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" :id="`modal-title-${photo.id}`">
+                                            <h5 class="modal-title text-fancy" :id="`modal-title-${photo.id}`">
                                                 {{ photo.title }}
                                             </h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
@@ -71,7 +71,7 @@ export default {
                                                 :alt="photo.title" style="height: 80%;">
                                             <img v-else :src="photo.cover_image" class="img-fluid" :alt="photo.title"
                                                 style="height: 80%;">
-                                            <p>
+                                            <p class="modal-description">
                                                 {{ photo.description }}
                                             </p>
                                         </div>
