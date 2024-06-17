@@ -29,13 +29,10 @@ export default {
 
                     <div class="card-body  back-card-f" style="height: 25%;">
                         <p class="text-white"><i>{{ photo.title }}</i><br></p>
-                        <div v-for="category in state.categories">
+                        <div v-for="category in state.categories" style="display: inline-block;">
                             <span class="span-if" v-if="category.id == photo.category_id">{{ category.name }}</span>
                         </div>
-                        <p>
-                            {{ photo.description }}
-                        </p>
-
+                        <span>{{ state.getDate(photo.created_at) }}</span>
                     </div>
 
                     <div class="card-footer  back-card-f" style="height: 10%;">
@@ -125,7 +122,11 @@ div.card-body {
 }
 
 .span-if {
-    color: blue;
+    color: #2fbae4da;
+    background-color:rgba(14, 83, 161, 0.747);
+    border-radius: 5px;
+    text-transform: capitalize;
+    padding: .1rem .2rem;
 }
 
 .back-card-f {

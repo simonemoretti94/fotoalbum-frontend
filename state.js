@@ -84,4 +84,11 @@ export const state = reactive({
             });
 
     },
+
+    getDate(date) {
+        let objDate = new Date(date).toString();
+        let tempDate = objDate.toString().substring(0, 4);
+        console.log(objDate, tempDate);
+        return objDate;
+    }
 });
