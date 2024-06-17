@@ -7,7 +7,9 @@ export const state = reactive({
     // variables
     base_api_url: 'http://127.0.0.1:8000',
     photos_endpoint: '/api/photos',
+    categories_endpoint: '/api/categories',
     photos: '',
+    categories: '',
     search_text: '',
     email: '',
     name: '',
@@ -22,7 +24,12 @@ export const state = reactive({
             .get(url)
             .then(response => {
                 console.log(response);
-                state.photos = response.data.results;
+                if (url.startsWith(this.base_api_url + this.photos_endpoint)) {
+                    state.photos = response.data.results;
+                }
+                else {
+                    state.categories = response.data.results.data;
+                }
             })
             .catch(error => {
                 console.error(error);

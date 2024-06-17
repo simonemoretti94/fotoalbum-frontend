@@ -20,17 +20,22 @@ export default {
                 <div class="card" style="height: 450px;">
 
                     <template v-if="!photo.cover_image.startsWith('https://')">
-                        <img :src="state.base_api_url + '/storage/' + photo.cover_image" :alt="photo.title"
+                        <img class="img-b-white" :src="state.base_api_url + '/storage/' + photo.cover_image" :alt="photo.title"
                             style="height: 80%;">
                     </template>
                     <template v-else>
-                        <img :src="photo.cover_image" :alt="photo.title" style="height: 65%;">
+                        <img class="img-b-white" :src="photo.cover_image" :alt="photo.title" style="height: 65%;">
                     </template>
 
                     <div class="card-body  back-card-f" style="height: 25%;">
-                        <p><b>{{ photo.title }}</b><br>
+                        <p class="text-white"><i>{{ photo.title }}</i><br></p>
+                        <div v-for="category in state.categories">
+                            <span class="span-if" v-if="category.id == photo.category_id">{{ category.name }}</span>
+                        </div>
+                        <p>
                             {{ photo.description }}
                         </p>
+
                     </div>
 
                     <div class="card-footer  back-card-f" style="height: 10%;">
@@ -107,8 +112,24 @@ div.card-body {
     flex: 0 0 auto;
 }
 
+.card {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border: 0;
+}
+
+.img-b-white {
+    border-bottom: .1px white solid;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.span-if {
+    color: blue;
+}
+
 .back-card-f {
-    background-color: #444444;
+    background: linear-gradient( #444444 , #444444f3);
 }
 
 </style>

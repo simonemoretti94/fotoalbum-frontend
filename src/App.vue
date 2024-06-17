@@ -20,9 +20,16 @@ export default {
   methods: {
   },
   mounted() {
+    //getting photos index
     const url = state.base_api_url + state.photos_endpoint;
     console.log(url);
     state.callApi(url);
+
+    //getting categories
+    const url2 = state.base_api_url + state.categories_endpoint;
+    console.log(url2);
+    state.callApi(url2);
+
 
   }
 }
