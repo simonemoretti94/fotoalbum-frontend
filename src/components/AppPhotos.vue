@@ -3,7 +3,7 @@ import { state } from '../../state.js';
 
 export default {
     name: 'AppPhotos',
-    props: ['passedPhotos'],
+    //props: ['passedPhotos'],
     data() {
         return {
             state,
@@ -13,13 +13,13 @@ export default {
 </script>
 
 <template>
-    <div class="container">
+    <div class="container-fluid">
         <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-5">
-            <div class="col" v-for="photo in passedPhotos.data">
+            <div class="col" v-for="photo in state.photos.data">
                 <div class="card" style="height: 450px;">
 
                     <template v-if="!photo.cover_image.startsWith('https://')">
-                        <img :src="base_api_url + '/storage/' + photo.cover_image" :alt="photo.title"
+                        <img :src="state.base_api_url + '/storage/' + photo.cover_image" :alt="photo.title"
                             style="height: 80%;">
                     </template>
                     <template v-else>
@@ -55,7 +55,7 @@ export default {
                                     <div class="modal-body" style="overflow-y: scroll;">
 
                                         <img v-if="!photo.cover_image.startsWith('https://')" class="img-fluid"
-                                            :src="base_api_url + '/storage/' + photo.cover_image" :alt="photo.title"
+                                            :src="state.base_api_url + '/storage/' + photo.cover_image" :alt="photo.title"
                                             style="height: 80%;">
                                         <img v-else :src="photo.cover_image" class="img-fluid" :alt="photo.title"
                                             style="height: 80%;">
@@ -76,10 +76,12 @@ export default {
                 </div>
             </div>
         </div>
+
+        <!--pagination-->
         <nav class="my-3" aria-label="Page navigation">
             <ul class="pagination    ">
                 <li class="page-item" :class="{ 'd-none': !link.url, 'active': link.active }"
-                    v-for="link in photos.links">
+                    v-for="link in state.photos.links">
                     <button class="page-link" :href="link.url" type="button" @click="goTo(link.url)"><span
                             v-html="link.label"></span></button>
                 </li>
@@ -88,4 +90,18 @@ export default {
     </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+div.card-body {
+  overflow-y: scroll;
+}
+
+.row {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+}
+.col {
+    flex: 0 0 auto;
+}
+
+</style>
