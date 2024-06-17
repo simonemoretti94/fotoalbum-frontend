@@ -2,20 +2,32 @@
 import { state } from '../../state.js'
 
 export default {
-    name: 'AppForm',
-    data () {
-        return {
-            state,
-        }
+  name: 'AppForm',
+  data() {
+    return {
+      state,
+
+      showForm: true,
     }
+  },
+  methods: {
+    openClose() {
+      this.showForm = !this.showForm;
+    }
+  }
 }
 </script>
 
 <template>
-      <section class="container back-jumbo my-3">
-    <h1 class="my-2 text-white">Photos:</h1>
+  <section class="container back-jumbo my-3 position-relative">
+    <div>
+      <p v-if="!showForm" v-on:click="openClose()" class="text-white"><i class="fa-solid fa-sort-down"></i><small
+          class="ms-1">search</small></p>
+    </div>
+    <h1 v-if="showForm" class="my-2 text-white">Photos:</h1>
+    <i v-if="showForm" class="fa-regular fa-circle-xmark position-absolute pos-icon" v-on:click="openClose()"></i>
 
-    <div class="back-jumbo-reversed p-2 mb-4 ">
+    <div v-if="showForm" class="back-jumbo-reversed p-2 mb-4 ">
 
       <form @submit.prevent="state.search()" action="">
         <div class="input-group mb-3 ">
@@ -27,11 +39,21 @@ export default {
       </form>
 
 
-     
+
     </div>
   </section>
 
 </template>
 
 <style scoped>
+.pos-icon {
+  top: 4%;
+  right: 0.5%;
+  font-size: 20px;
+  color: white;
+
+  @media screen and (max-width: 720px) {
+    right: 2%;
+  }
+}
 </style>
