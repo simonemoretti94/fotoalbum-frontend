@@ -42,11 +42,11 @@ export default {
                         </template>
 
                         <div class="card-body  back-card-f" style="height: 25%;">
-                            <p class="text-white"><i>{{ photo.title }}</i><br></p>
+                            <p class="text-white it-switch"><i>{{ photo.title }}</i><br></p>
                             <p>
                                 <span class="span-if media-span" v-if="state.findCategory(photo.category_id)">{{
                                     state.findCategory(photo.category_id)
-                                    }}</span>
+                                }}</span>
                                 <span class="span-date media-span"
                                     :class="{ 'date-margin': state.findCategory(photo.category_id) }">{{
                                         state.getDate(photo.created_at) }}</span>
@@ -77,16 +77,19 @@ export default {
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close"></button>
                                         </div>
-                                        <div class="modal-body" style="overflow-y: scroll;">
+                                        <div class="modal-body">
 
                                             <img v-if="!photo.cover_image.startsWith('https://')" class="img-fluid"
                                                 :src="state.base_api_url + '/storage/' + photo.cover_image"
                                                 :alt="photo.title" style="height: 80%;">
                                             <img v-else :src="photo.cover_image" class="img-fluid" :alt="photo.title"
                                                 style="height: 80%;">
-                                            <p class="modal-description">
-                                                {{ photo.description }}
-                                            </p>
+                                            <div class="overflow-y-auto">
+
+                                                <p class="modal-description">
+                                                    {{ photo.description }}
+                                                </p>
+                                            </div>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
@@ -143,10 +146,24 @@ export default {
     border: 0;
 }
 
+/*.card:hover {
+    filter: drop-shadow(0 0 5px black);
+}*/
+
 .img-b-white {
     border-bottom: .1px white solid;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
+}
+
+.img-b-white:hover {
+    filter: contrast(1.05);
+}
+
+.it-switch:hover {
+    font-weight: 400;
+    transform: skewX(5deg);
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.748);
 }
 
 .span-if {
@@ -165,6 +182,12 @@ export default {
     border-radius: 5px;
     padding: .1rem .2rem;
     font-size: 15px;
+}
+
+.span-if:hover,
+.span-date:hover {
+    filter: contrast(1.05);
+    transform: scale(1.05);
 }
 
 .date-margin {
