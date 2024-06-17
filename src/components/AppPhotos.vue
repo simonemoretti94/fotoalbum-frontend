@@ -29,10 +29,10 @@ export default {
 
                     <div class="card-body  back-card-f" style="height: 25%;">
                         <p class="text-white"><i>{{ photo.title }}</i><br></p>
-                        <div v-for="category in state.categories" style="display: inline-block;">
-                            <span class="span-if" v-if="category.id == photo.category_id">{{ category.name }}</span>
-                        </div>
-                        <span>{{ state.getDate(photo.created_at) }}</span>
+                        <p>
+                            <span class="span-if" v-if="state.findCategory(photo.category_id)">{{ state.findCategory(photo.category_id) }}</span>
+                            <span class="span-date" :class="{'date-margin': state.findCategory(photo.category_id)}">{{ state.getDate(photo.created_at) }}</span>
+                        </p>
                     </div>
 
                     <div class="card-footer  back-card-f" style="height: 10%;">
@@ -95,9 +95,6 @@ export default {
 </template>
 
 <style scoped>
-div.card-body {
-  overflow-y: scroll;
-}
 
 .row {
     display: flex;
@@ -127,6 +124,24 @@ div.card-body {
     border-radius: 5px;
     text-transform: capitalize;
     padding: .1rem .2rem;
+}
+
+.span-date {
+    color:  rgba(105 , 105 , 105);
+    background-color: rgba(57 , 57 , 57);
+    border-radius: 5px;
+    padding: .1rem .2rem;  
+}
+
+.date-margin {
+    margin-left: 1.5rem;
+
+    @media screen and (max-width: 1000px) {
+        margin-left: .2rem;   
+    }
+    @media screen and (max-width: 576px) {
+        margin-left: 1rem;   
+    }
 }
 
 .back-card-f {

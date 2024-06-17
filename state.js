@@ -86,9 +86,20 @@ export const state = reactive({
     },
 
     getDate(date) {
-        let objDate = new Date(date).toString();
-        let tempDate = objDate.toString().substring(0, 4);
-        console.log(objDate, tempDate);
+        let objDate = new Date(date).toString().split(' ').slice(0, 4).join(' ');
+        /*let tempDate = objDate.toString().split(' ');
+        let newDate = tempDate.slice(0, 4).join(' ')
+        console.log(newDate, ' \n ', tempDate);*/
+        console.log(objDate);
         return objDate;
+    },
+    findCategory(id) {
+        let category = this.categories.find(element => id == element.id);
+        if (category) {
+            console.log(category.name);
+            return category.name;
+        } else {
+            return null;
+        }
     }
 });

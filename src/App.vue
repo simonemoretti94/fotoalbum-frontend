@@ -18,6 +18,7 @@ export default {
     }
   },
   methods: {
+    
   },
   mounted() {
     //getting photos index
@@ -29,7 +30,7 @@ export default {
     const url2 = state.base_api_url + state.categories_endpoint;
     console.log(url2);
     state.callApi(url2);
-
+    
 
   }
 }
