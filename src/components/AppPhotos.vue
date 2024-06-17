@@ -7,7 +7,19 @@ export default {
     data() {
         return {
             state,
+
+            wListener: false,
         }
+    },
+    mounted() {
+        window.addEventListener('resize', (e) => {
+            if (window.innerWidth < 450) {
+                this.wListener = true;
+            }
+            else {
+                this.wListener = false;
+            }
+        });
     },
 }
 </script>
@@ -15,8 +27,9 @@ export default {
 <template>
     <section v-if="state.photos">
         <div class="container-fluid">
-            <div class="row row-cols-sm-3 row-cols-lg-4 g-5"
-                :class="{ 'justify-content-center': state.photos.length % 2 != 0 }">
+            <div class="row row-cols-sm-3 row-cols-lg-4 g-5">
+                <!-- <div class="row row-cols-sm-3 row-cols-lg-4 g-5"
+                :class="{ 'justify-content-center': state.photos.length % 2 != 0 }"> -->
                 <div class="col" v-for="photo in state.photos.data">
                     <div class="card" style="height: 450px;">
 
@@ -33,7 +46,7 @@ export default {
                             <p>
                                 <span class="span-if media-span" v-if="state.findCategory(photo.category_id)">{{
                                     state.findCategory(photo.category_id)
-                                    }}</span>
+                                }}</span>
                                 <span class="span-date media-span"
                                     :class="{ 'date-margin': state.findCategory(photo.category_id) }">{{
                                         state.getDate(photo.created_at) }}</span>
@@ -54,8 +67,8 @@ export default {
                             <div class="modal fade" :id="`photo-${photo.id}`" tabindex="-1" data-bs-backdrop="static"
                                 data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId"
                                 aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm"
-                                    role="document">
+                                <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered "
+                                    :class="wListener ? 'modal-sm' : 'modal-md'" role="document">
                                     <div class="modal-content back-jumbo-reversed">
                                         <div class="modal-header">
                                             <h5 class="modal-title text-fancy" :id="`modal-title-${photo.id}`">
