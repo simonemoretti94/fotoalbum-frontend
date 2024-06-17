@@ -12,8 +12,8 @@ export default {
 </script>
 
 <template>
-      <section class="container">
-    <h1 class="my-2">Photos:</h1>
+      <section class="container back-jumbo my-3">
+    <h1 class="my-2 text-white">Photos:</h1>
 
     <div class="p-5 mb-4 bg-light rounded-3">
       <div class="container-fluid py-5">

@@ -27,13 +27,13 @@ export default {
                         <img :src="photo.cover_image" :alt="photo.title" style="height: 65%;">
                     </template>
 
-                    <div class="card-body" style="height: 25%;">
+                    <div class="card-body  back-card-f" style="height: 25%;">
                         <p><b>{{ photo.title }}</b><br>
                             {{ photo.description }}
                         </p>
                     </div>
 
-                    <div class="card-footer" style="height: 10%;">
+                    <div class="card-footer  back-card-f" style="height: 10%;">
 
                         <!-- Modal trigger button -->
                         <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
@@ -105,6 +105,10 @@ div.card-body {
 }
 .col {
     flex: 0 0 auto;
+}
+
+.back-card-f {
+    background-color: #444444;
 }
 
 </style>

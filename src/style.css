@@ -1,0 +1,18 @@
+:root {
+    --back-body: #001d3d;
+    --back-jumbo: #000814;
+    --back-card-f: #444444;
+    --body-hue: 141;
+    --body-sat: 124%;
+    --body-lum: 14%;
+}
+
+body {
+    background-color: var(--back-body);
+}
+
+.back-jumbo {
+    border-radius: 8px;
+    border: solid .5px rgba(255, 255, 255, 0.178);
+    background: linear-gradient(var(--back-body), var(--back-jumbo));
+}
