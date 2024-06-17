@@ -15,7 +15,7 @@ export default {
 <template>
 <section v-if="state.photos">
     <div class="container-fluid">
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-5">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-5" :class="{'justify-content-center': state.photos.length % 2 != 0}">
             <div class="col" v-for="photo in state.photos.data">
                 <div class="card" style="height: 450px;">
 

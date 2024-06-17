@@ -16,3 +16,9 @@ body {
     border: solid .5px rgba(255, 255, 255, 0.178);
     background: linear-gradient(var(--back-body), var(--back-jumbo));
 }
+
+.back-jumbo-reversed {
+    border-radius: 8px;
+    border: solid 0.1px rgba(169, 36, 187, 0.534);
+    background: linear-gradient(var(--back-jumbo), var(--back-body));
+}

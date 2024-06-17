@@ -15,25 +15,23 @@ export default {
       <section class="container back-jumbo my-3">
     <h1 class="my-2 text-white">Photos:</h1>
 
-    <div class="p-5 mb-4 bg-light rounded-3">
-      <div class="container-fluid py-5">
-        <h1 class="display-5 fw-bold">Blog</h1>
-        <p class="col-md-8 fs-4">
-          Read our amazing blog
-        </p>
+    <div class="back-jumbo-reversed p-2 mb-4 ">
 
-        <form @submit.prevent="state.search()" action="">
-          <div class="input-group mb-3">
-            <input type="search" class="form-control" placeholder="search..." v-model="state.search_text">
-            <button class="btn btn-outline-secondary" type="submit">
-              <i class="fas fa-search fa-lg fa-fw"></i>
-            </button>
-          </div>
-        </form>
+      <form @submit.prevent="state.search()" action="">
+        <div class="input-group mb-3 ">
+          <input type="search" class="form-control" placeholder="Search a pic..." v-model="state.search_text">
+          <button class="btn btn-outline-secondary" type="submit">
+            <i class="fas fa-search fa-lg fa-fw"></i>
+          </button>
+        </div>
+      </form>
 
 
-      </div>
+     
     </div>
   </section>
 
 </template>
+
+<style scoped>
+</style>
