@@ -99,8 +99,9 @@ export default {
 .row {
     display: flex;
     flex-wrap: nowrap;
-    overflow-x: auto;
+    overflow-x: scroll;
     padding: 1rem 0;
+   
 }
 .col {
     flex: 0 0 auto;
