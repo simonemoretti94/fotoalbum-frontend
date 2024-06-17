@@ -1,35 +1,18 @@
 <script>
-import axios from 'axios';
-import AppForm from './components/AppForm.vue';
-import AppOffcanvas from './components/AppOffcanvas.vue';
-import AppPhotos from './components/AppPhotos.vue';
-import { state } from '../state.js';
+import { state } from '../../state.js'
 
 export default {
-  name: 'App',
-  components: {
-    AppForm,
-    AppOffcanvas,
-    AppPhotos,
-  },
-  data() {
-    return {
-      state,
+    name: 'AppForm',
+    data () {
+        return {
+            state,
+        }
     }
-  },
-  methods: {
-  },
-  mounted() {
-    const url = state.base_api_url + state.photos_endpoint;
-    console.log(url);
-    state.callApi(url);
-
-  }
 }
 </script>
 
 <template>
-  <AppOffcanvas></AppOffcanvas>
+      <section class="container">
     <h1 class="my-2">Photos:</h1>
 
     <div class="p-5 mb-4 bg-light rounded-3">
@@ -51,6 +34,6 @@ export default {
 
       </div>
     </div>
-  <AppForm></AppForm>
-  <AppPhotos></AppPhotos>
+  </section>
+
 </template>

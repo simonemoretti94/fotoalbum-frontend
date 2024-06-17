@@ -13,6 +13,7 @@ export default {
 </script>
 
 <template>
+<section v-if="state.photos">
     <div class="container-fluid">
         <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-5">
             <div class="col" v-for="photo in state.photos.data">
@@ -88,6 +89,7 @@ export default {
             </ul>
         </nav>
     </div>
+</section>
 </template>
 
 <style scoped>
@@ -99,6 +101,7 @@ div.card-body {
     display: flex;
     flex-wrap: nowrap;
     overflow-x: auto;
+    padding: 1rem 0;
 }
 .col {
     flex: 0 0 auto;
