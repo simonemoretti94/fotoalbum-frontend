@@ -46,7 +46,7 @@ export default {
                             <p>
                                 <span class="span-if media-span" v-if="state.findCategory(photo.category_id)">{{
                                     state.findCategory(photo.category_id)
-                                }}</span>
+                                    }}</span>
                                 <span class="span-date media-span"
                                     :class="{ 'date-margin': state.findCategory(photo.category_id) }">{{
                                         state.getDate(photo.created_at) }}</span>
@@ -105,7 +105,7 @@ export default {
             </div>
 
             <!--pagination-->
-            <nav class="my-3" aria-label="Page navigation">
+            <!--<nav class="my-3" aria-label="Page navigation">
                 <ul class="pagination    ">
                     <li class="page-item" :class="{ 'd-none': !link.url, 'active': link.active }"
                         v-for="link in state.photos.links">
@@ -113,7 +113,7 @@ export default {
                                 v-html="link.label"></span></button>
                     </li>
                 </ul>
-            </nav>
+            </nav>-->
         </div>
     </section>
 </template>
