@@ -60,7 +60,7 @@ export default {
 
                                 <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
                                     :data-bs-target="`#photo-${photo.id}`">
-                                    View
+                                    Show photo
                                 </button>
                             </div>
 
@@ -95,7 +95,6 @@ export default {
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                                                 Close
                                             </button>
-                                            <!-- <button type="button" class="btn btn-primary">Save</button> -->
                                         </div>
                                     </div>
                                 </div>
