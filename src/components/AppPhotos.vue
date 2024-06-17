@@ -13,7 +13,7 @@ export default {
     },
     mounted() {
         window.addEventListener('resize', (e) => {
-            if (window.innerWidth < 450) {
+            if (window.innerWidth < 572) {
                 this.wListener = true;
             }
             else {
@@ -46,7 +46,7 @@ export default {
                             <p>
                                 <span class="span-if media-span" v-if="state.findCategory(photo.category_id)">{{
                                     state.findCategory(photo.category_id)
-                                }}</span>
+                                    }}</span>
                                 <span class="span-date media-span"
                                     :class="{ 'date-margin': state.findCategory(photo.category_id) }">{{
                                         state.getDate(photo.created_at) }}</span>
