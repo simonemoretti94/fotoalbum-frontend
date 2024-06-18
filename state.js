@@ -18,20 +18,30 @@ export const state = reactive({
     errors: false,
     loading: false,
 
+    loadingApi: true,
+    emptyContent: false,
+
     wListener: false,
 
     // methods
     callApi(url) {
+        this.loadingApi = true;
+        this.emptyContent = false;
+        this.photos = '';
         axios
             .get(url)
             .then(response => {
                 console.log(response);
                 if (url.startsWith(this.base_api_url + this.photos_endpoint)) {
                     state.photos = response.data.results;
+                    if (this.photos.data.length == 0) { this.emptyContent = true; }
                 }
                 else {
                     state.categories = response.data.results.data;
                 }
+
+                this.loadingApi = false;
+
             })
             .catch(error => {
                 console.error(error);

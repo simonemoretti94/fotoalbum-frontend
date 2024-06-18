@@ -49,7 +49,7 @@ export default {
                             <p>
                                 <span class="span-if media-span" v-if="state.findCategory(photo.category_id)">{{
                                     state.findCategory(photo.category_id)
-                                }}</span>
+                                    }}</span>
                                 <span class="span-date media-span"
                                     :class="{ 'date-margin': state.findCategory(photo.category_id) }">{{
                                         state.getDate(photo.created_at) }}</span>
@@ -76,6 +76,19 @@ export default {
             </nav>-->
         </div>
     </section>
+    <section v-if="state.loadingApi" style="min-height: calc(100vh - 100px);">
+        <div class="container">
+            <p class="text-center text-white"><i class='fa fa-refresh fa-spin me-1'></i>Loading content, please wait</p>
+        </div>
+    </section>
+    <section v-if="state.emptyContent" style="min-height: calc(100vh - 100px);">
+        <div class="container">
+            <h5 class="text-white text-center mt-5"><i class="fa-solid fa-triangle-exclamation me-1"></i>Content not
+                found
+            </h5>
+        </div>
+    </section>
+
 </template>
 
 <style scoped>
