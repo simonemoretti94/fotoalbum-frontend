@@ -18,8 +18,8 @@ export const state = reactive({
     errors: false,
     loading: false,
 
-    loadingApi: true,
-    emptyContent: false,
+    loadingApi: true, // used into AppPhotos as results check
+    emptyContent: false, // used into AppPhotos while no content was found
 
     wListener: false,
 
@@ -33,11 +33,11 @@ export const state = reactive({
             .then(response => {
                 console.log(response);
                 if (url.startsWith(this.base_api_url + this.photos_endpoint)) {
-                    state.photos = response.data.results;
+                    this.photos = response.data.results;
                     if (this.photos.data.length == 0) { this.emptyContent = true; }
                 }
                 else {
-                    state.categories = response.data.results.data;
+                    this.categories = response.data.results.data;
                 }
 
                 this.loadingApi = false;
@@ -99,16 +99,13 @@ export const state = reactive({
 
     getDate(date) {
         let objDate = new Date(date).toString().split(' ').slice(0, 4).join(' ');
-        /*let tempDate = objDate.toString().split(' ');
-        let newDate = tempDate.slice(0, 4).join(' ')
-        console.log(newDate, ' \n ', tempDate);*/
-        console.log(objDate);
+        //console.log(objDate);
         return objDate;
     },
     findCategory(id) {
         let category = this.categories.find(element => id == element.id);
         if (category) {
-            console.log(category.name);
+            //console.log(category.name);
             return category.name;
         } else {
             return null;
