@@ -18,6 +18,8 @@ export const state = reactive({
     errors: false,
     loading: false,
 
+    wListener: false,
+
     // methods
     callApi(url) {
         axios
