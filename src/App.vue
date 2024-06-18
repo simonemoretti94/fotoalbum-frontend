@@ -1,7 +1,7 @@
 <script>
 import axios from 'axios';
 import AppForm from './components/AppForm.vue';
-import AppOffcanvas from './components/AppOffcanvas.vue';
+// import AppOffcanvas from './components/AppOffcanvas.vue';
 import AppPhotos from './components/AppPhotos.vue';
 import { state } from '../state.js';
 
@@ -9,7 +9,7 @@ export default {
   name: 'App',
   components: {
     AppForm,
-    AppOffcanvas,
+    // AppOffcanvas,
     AppPhotos,
   },
   data() {
@@ -18,7 +18,7 @@ export default {
     }
   },
   methods: {
-    
+
   },
   mounted() {
     //getting photos index
@@ -30,14 +30,14 @@ export default {
     const url2 = state.base_api_url + state.categories_endpoint;
     console.log(url2);
     state.callApi(url2);
-    
+
 
   }
 }
 </script>
 
 <template>
-  <AppOffcanvas></AppOffcanvas>
   <AppForm></AppForm>
+  <!-- <AppOffcanvas></AppOffcanvas> -->
   <AppPhotos></AppPhotos>
 </template>

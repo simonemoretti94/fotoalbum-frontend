@@ -1,5 +1,6 @@
 <script>
-import { state } from '../../state.js'
+import { state } from '../../state.js';
+import AppOffcanvas from './AppOffcanvas.vue';
 
 export default {
   name: 'AppForm',
@@ -9,6 +10,9 @@ export default {
 
       showForm: true,
     }
+  },
+  components: {
+    AppOffcanvas,
   },
   methods: {
     openClose() {
@@ -21,8 +25,13 @@ export default {
 <template>
   <section class="container back-jumbo my-3 position-relative">
     <div>
-      <p v-if="!showForm" v-on:click="openClose()" class="text-white"><i class="fa-solid fa-sort-down"></i><small
-          class="ms-1">search</small></p>
+      <div v-if="!showForm">
+        <p v-on:click="openClose()" class="text-white col-9"><i class="fa-solid fa-sort-down"></i><small
+            class="ms-1">search</small>
+        </p>
+        <AppOffcanvas></AppOffcanvas>
+      </div>
+
     </div>
     <h1 v-if="showForm" class="my-2 text-white">Photos:</h1>
     <i v-if="showForm" class="fa-regular fa-circle-xmark position-absolute pos-icon" v-on:click="openClose()"></i>
