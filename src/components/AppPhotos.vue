@@ -8,21 +8,10 @@ export default {
     data() {
         return {
             state,
-
         }
     },
     components: {
         AppModal
-    },
-    mounted() {
-        window.addEventListener('resize', (e) => {
-            if (window.innerWidth < 572) {
-                state.wListener = true;
-            }
-            else {
-                state.wListener = false;
-            }
-        });
     },
 }
 </script>
@@ -30,7 +19,8 @@ export default {
 <template>
     <section v-if="state.photos">
         <div class="container-fluid">
-            <div class="row row-cols-sm-3 row-cols-lg-4 g-5">
+            <div class="row row-cols-sm-3 row-cols-lg-4 g-5"
+                :class="{ 'justify-content-center overflow-x-hidden': state.photos.data.length == 1 }">
                 <!-- <div class="row row-cols-sm-3 row-cols-lg-4 g-5"
                 :class="{ 'justify-content-center': state.photos.length % 2 != 0 }"> -->
                 <div class="col" v-for="photo in state.photos.data">
@@ -49,7 +39,7 @@ export default {
                             <p>
                                 <span class="span-if media-span" v-if="state.findCategory(photo.category_id)">{{
                                     state.findCategory(photo.category_id)
-                                    }}</span>
+                                }}</span>
                                 <span class="span-date media-span"
                                     :class="{ 'date-margin': state.findCategory(photo.category_id) }">{{
                                         state.getDate(photo.created_at) }}</span>

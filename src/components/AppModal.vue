@@ -10,7 +10,17 @@ export default {
     },
     props: {
         photo: Object,
-    }
+    },
+    mounted() {
+        window.addEventListener('resize', (e) => {
+            if (window.innerWidth < 572) {
+                state.wListener = true;
+            }
+            else {
+                state.wListener = false;
+            }
+        });
+    },
 }
 
 </script>
