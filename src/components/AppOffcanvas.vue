@@ -2,17 +2,17 @@
 import { state } from '../../state.js'
 
 export default {
-    name: 'AppOffcanvas',
-    data () {
-        return {
-            state,
-        }
+  name: 'AppOffcanvas',
+  data() {
+    return {
+      state,
     }
+  }
 }
 </script>
 
 <template>
-     <button class="btn btn-link position-fixed end-0" type="button" data-bs-toggle="offcanvas"
+  <button class="btn btn-link position-fixed end-0 z-1" type="button" data-bs-toggle="offcanvas"
     data-bs-target="#contactsForm" aria-controls="contactsForm">
     Contacts
   </button>
@@ -47,7 +47,7 @@ export default {
             <label for="email" class="form-label">E-mail</label>
             <div class="mb-3">
               <input type="text" class="form-control" name="email" id="email" aria-describedby="emailHelper"
-                placeholder="abc@mail.com" v-model="state.email" />
+                placeholder="yourmail@example.com" v-model="state.email" />
               <small id="helpId" class="form-text text-muted">Type a valid e-mail</small>
             </div>
 

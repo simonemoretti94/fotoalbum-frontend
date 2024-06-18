@@ -75,19 +75,19 @@ export const state = reactive({
         axios.post('http://127.0.0.1:8000/api/contacts', payload)
             .then(response => {
                 console.log(response);
-                state.loading = false;
+                this.loading = false;
 
                 if (response.data.success) {
-                    state.success = 'Thanks for your message';
-                    state.error = false;
-                    state.email = '';
-                    state.name = '';
-                    state.message = '';
+                    this.success = 'Thanks for your message';
+                    this.error = false;
+                    this.email = '';
+                    this.name = '';
+                    this.message = '';
                 }
                 else {
                     console.log(response);
-                    state.errors = response.data.errors;
-                    state.success = false;
+                    this.errors = response.data.errors;
+                    this.success = false;
                 }
 
             })
